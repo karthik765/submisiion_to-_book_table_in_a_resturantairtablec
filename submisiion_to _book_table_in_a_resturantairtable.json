@@ -1,0 +1,152 @@
+{
+  "name": "airtable",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Table ",
+        "formDescription": "what table do you want to book?",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "your Name",
+              "placeholder": "type your name ",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "what type of table do you want to book?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Standard Dining Tables"
+                  },
+                  {
+                    "option": "Booths"
+                  },
+                  {
+                    "option": "Counter Height Tables"
+                  },
+                  {
+                    "option": "Communal Tables"
+                  },
+                  {
+                    "option": "Outdoor Tables"
+                  },
+                  {
+                    "option": "Banquet Tables"
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -300,
+        -20
+      ],
+      "id": "1312e90c-1556-4a19-96b1-200245ea5447",
+      "name": "On form submission",
+      "webhookId": "55a784ba-f778-4dc5-802e-6ec93e7e4a2d"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "apptmd3xxJ5Q4oVk9",
+          "mode": "list",
+          "cachedResultName": "Test Airtable",
+          "cachedResultUrl": "https://airtable.com/apptmd3xxJ5Q4oVk9"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblQgkKWhCWJI58NJ",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/apptmd3xxJ5Q4oVk9/tblQgkKWhCWJI58NJ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json['your Name'] }}",
+            "Tables": "={{ $json['what type of table do you want to book?'][0] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Tables",
+              "displayName": "Tables",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        -20
+      ],
+      "id": "be400312-176f-44ad-a1fb-ff19d1f4b23c",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "N4e5VR3YUC2KuZrP",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "35994c5a-6192-4d6a-9edf-1f86232d9cd2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9c9ab4959a11d4c35ac80ae9474eea0ac7e6f36274954254136dff661ca5e00c"
+  },
+  "id": "0RgYxDvtrOY0x6cY",
+  "tags": []
+}
